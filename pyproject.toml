@@ -5,9 +5,17 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "jupyterlab>=4.4.9",
+    "jupyterlab-git>=0.51.2",
+    "jupyterlab-lsp>=5.2.0",
     "matplotlib>=3.10.7",
+    "nltk>=3.9.2",
     "numpy>=2.3.4",
     "pandas>=2.3.3",
+    "pip>=25.2",
+    "python-lsp-server[all]>=1.13.1",
+    "regex>=2025.9.18",
+    "sacrebleu>=2.5.1",
     "scikit-learn>=1.7.2",
     "scipy>=1.16.2",
     "seaborn>=0.13.2",
