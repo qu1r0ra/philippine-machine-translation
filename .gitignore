@@ -1,7 +1,8 @@
-# Miscellaneous
+# Jupyter junk
 **/*.ipynb_checkpoints
-*.chat
+.virtual_documents/
 .jupyter_ystore.db
+*.chat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
