@@ -3,8 +3,9 @@ Global configuration file for the Philippine Machine Translation project.
 Defines shared paths, constants, and helper functions for all notebooks and modules.
 """
 
-from pathlib import Path
 import random
+from pathlib import Path
+
 import numpy as np
 
 # ============================================================
