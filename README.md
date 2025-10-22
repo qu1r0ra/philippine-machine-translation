@@ -4,7 +4,7 @@
 
 <!-- Refer to https://shields.io/badges for usage -->
 
-![Year, Term, Course](https://img.shields.io/badge/AY2526--T1-NLP1000-blue) ![Google Colab](https://img.shields.io/badge/Google%20Colab-F9AB00?logo=googlecolab&logoColor=fff) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)
+![Year, Term, Course](https://img.shields.io/badge/AY2526--T1-NLP1000-blue) ![JupyterLab](https://img.shields.io/badge/JupyterLab-orange) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)
 
 An exploration of machine translation for a subset of (mostly) Philippine languages. Created for NLP1000 (Introduction to Natural Language Processing).
 
