@@ -1,3 +1,6 @@
+# Data
+data/
+
 # Jupyter junk
 **/*.ipynb_checkpoints
 .virtual_documents/
