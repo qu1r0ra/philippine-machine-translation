@@ -100,7 +100,6 @@ def ensure_dirs():
     """Create all necessary directories if they don't exist."""
     for path in [
         LOGS_DIR,
-        CLEANED_DIR,
         PROCESSED_DIR,
         MODELS_DIR,
         RESULTS_DIR,

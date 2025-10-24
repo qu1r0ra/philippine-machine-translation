@@ -3,19 +3,18 @@ Preprocessing utilities for the Philippine MT project.
 Handles text cleaning, tokenization, and word class creation via FastText embeddings.
 """
 
-import re
 import json
-import nltk
-import pandas as pd
-import numpy as np
-
+import multiprocessing
+import re
 from pathlib import Path
+
+import nltk
+import numpy as np
+import pandas as pd
 from gensim.models import FastText
 from sklearn.cluster import KMeans
-from collections import Counter
-import multiprocessing
 
-from src.config import RANDOM_SEED, MODELS_DIR, PROCESSED_DIR
+from src.config import MODELS_DIR, PROCESSED_DIR, RANDOM_SEED
 
 # ============================================================
 # Normalization and tokenization
@@ -92,13 +91,14 @@ def cluster_words(
     vectors = np.array([model.wv[w] for w in vocab])
 
     print(
-        f"[Clustering] Running KMeans on {len(vocab):,} word vectors ({vectors.shape[1]} dims) ..."
+        f"[Clustering] Running KMeans on {len(vocab):,} "
+        f"word vectors ({vectors.shape[1]} dims) ..."
     )
 
     kmeans = KMeans(n_clusters=n_clusters, random_state=random_state, n_init=10)
     labels = kmeans.fit_predict(vectors)
 
-    word2class = {word: f"c{label}" for word, label in zip(vocab, labels)}
+    word2class = {word: f"c{label}" for word, label in zip(vocab, labels, strict=True)}
     print(f"[Clustering] Done — created {n_clusters} clusters.")
 
     return word2class
