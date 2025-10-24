@@ -14,7 +14,7 @@ import pandas as pd
 from gensim.models import FastText
 from sklearn.cluster import KMeans
 
-from src.config import MODELS_DIR, PROCESSED_DIR, RANDOM_SEED
+from src.config import PROCESSED_DIR, RANDOM_SEED
 
 # ============================================================
 # Normalization and tokenization
@@ -73,8 +73,8 @@ def train_fasttext(
     )
 
     if model_path:
-        model.save(str(MODELS_DIR))
-        print(f"[FastText] Model saved to {MODELS_DIR}")
+        model.save(str(model_path))
+        print(f"[FastText] Model saved to {model_path}")
 
     return model
 
@@ -104,8 +104,12 @@ def cluster_words(
     return word2class
 
 
-def save_word_classes(word2class: dict[str, str], output_path: Path = PROCESSED_DIR):
+def save_word_classes(
+    word2class: dict[str, str],
+    output_path: Path = PROCESSED_DIR / "word_classes.json",
+):
     """Save word-to-class mapping as JSON."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf8") as f:
         json.dump(word2class, f, ensure_ascii=False, indent=2)
     print(f"[Save] Word classes saved to {output_path}")
