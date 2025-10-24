@@ -81,7 +81,7 @@ def train_fasttext(
 
 def cluster_words(
     model: FastText, n_clusters: int = 100, random_state: int = RANDOM_SEED
-) -> dict[str, str]:
+) -> dict[str, int]:
     """
     Cluster word embeddings into word classes using KMeans.
     Returns a mapping from word -> class ID.
@@ -96,16 +96,16 @@ def cluster_words(
     )
 
     kmeans = KMeans(n_clusters=n_clusters, random_state=random_state, n_init=10)
-    labels = kmeans.fit_predict(vectors)
+    labels = [int(label) for label in kmeans.fit_predict(vectors)]
 
-    word2class = {word: f"c{label}" for word, label in zip(vocab, labels, strict=True)}
+    word2class = dict(zip(vocab, labels, strict=True))
     print(f"[Clustering] Done — created {n_clusters} clusters.")
 
     return word2class
 
 
 def save_word_classes(
-    word2class: dict[str, str],
+    word2class: dict[str, int],
     output_path: Path = PROCESSED_DIR / "word_classes.json",
 ):
     """Save word-to-class mapping as JSON."""
@@ -151,7 +151,7 @@ def build_word_classes(
     output_path: Path = PROCESSED_DIR / "word_classes.json",
     vector_size: int = 100,
     n_clusters: int = 100,
-) -> dict[str, str]:
+) -> dict[str, int]:
     """
     Builds word embeddings using FastText and clusters them into word classes.
     Saves the mapping to disk.
