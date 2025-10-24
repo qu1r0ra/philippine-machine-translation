@@ -19,7 +19,6 @@ DATA_DIR = PROJECT_ROOT / "data"
 LOGS_DIR = PROJECT_ROOT / "logs"
 
 RAW_DIR = DATA_DIR / "raw"
-CLEANED_DIR = DATA_DIR / "cleaned"
 PROCESSED_DIR = DATA_DIR / "processed"
 MODELS_DIR = DATA_DIR / "models"
 RESULTS_DIR = DATA_DIR / "results"
@@ -45,6 +44,9 @@ LANGUAGE_PAIRS = [
 
 SOURCE_LANG = LANGUAGE_PAIRS[0][0]
 TARGET_LANG = LANGUAGE_PAIRS[0][1]
+
+SOURCE_COL = "language1"
+TARGET_COL = "language2"
 
 # ============================================================
 # Reproducibility
@@ -101,7 +103,6 @@ def ensure_dirs():
     """Create all necessary directories if they don't exist."""
     for path in [
         LOGS_DIR,
-        CLEANED_DIR,
         PROCESSED_DIR,
         MODELS_DIR,
         RESULTS_DIR,
