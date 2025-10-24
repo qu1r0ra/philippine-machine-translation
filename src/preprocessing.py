@@ -33,7 +33,7 @@ def normalize_text(text: str) -> str:
 
 
 def tokenize_sentence(text: str) -> list[str]:
-    """SImple work tokenizer."""
+    """Simple work tokenizer."""
     return nltk.word_tokenize(text)
 
 
@@ -142,6 +142,11 @@ def build_word_classes(
     Builds word embeddings using FastText and clusters them into word classes.
     Saves the mapping to disk.
     """
+    if "src_tokens" not in df or "tgt_tokens" not in df:
+        raise ValueError(
+            "DataFrame must contain 'src_tokens' and 'tgt_tokens' columns. Run preprocess_corpus() first."
+        )
+
     all_sentences = df["src_tokens"].tolist() + df["tgt_tokens"].tolist()
 
     model = train_fasttext(all_sentences, vector_size=vector_size)
