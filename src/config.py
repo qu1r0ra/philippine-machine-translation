@@ -45,6 +45,9 @@ LANGUAGE_PAIRS = [
 SOURCE_LANG = LANGUAGE_PAIRS[0][0]
 TARGET_LANG = LANGUAGE_PAIRS[0][1]
 
+SOURCE_COL = "language1"
+TARGET_COL = "language2"
+
 # ============================================================
 # Reproducibility
 # ============================================================
