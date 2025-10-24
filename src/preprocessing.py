@@ -14,7 +14,7 @@ import pandas as pd
 from gensim.models import FastText
 from sklearn.cluster import KMeans
 
-from src.config import PROCESSED_DIR, RANDOM_SEED
+from src.config import PROCESSED_DIR, RANDOM_SEED, SOURCE_COL, TARGET_COL
 
 # ============================================================
 # Normalization and tokenization
@@ -120,13 +120,23 @@ def save_word_classes(
 # ============================================================
 
 
-def preprocess_corpus(df: pd.DataFrame, src_col: str, tgt_col: str) -> pd.DataFrame:
+def preprocess_corpus(
+    df: pd.DataFrame, src_col: str = SOURCE_COL, tgt_col: str = TARGET_COL
+) -> pd.DataFrame:
     """
     Preprocess both source and target texts in a DataFrame.
+    Drops rows with missing or invalid translations (e.g., "N/A").
     Returns a new DataFrame with tokenized columns.
     """
     print(f"\n[Preprocessing] Cleaning and tokenizing columns: {src_col}, {tgt_col}")
     df = df.copy()
+
+    invalid_values = ["N/A", "n/a", "na", "", None]
+    df = df[~df[src_col].isin(invalid_values)]
+    df = df[~df[tgt_col].isin(invalid_values)]
+    df = df.dropna(subset=[src_col, tgt_col])
+
+    print(f"[Preprocessing] {len(df):,} valid sentence pairs remaining after cleaning.")
 
     df["src_tokens"] = df[src_col].apply(preprocess_sentence)
     df["tgt_tokens"] = df[tgt_col].apply(preprocess_sentence)
