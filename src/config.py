@@ -19,7 +19,6 @@ DATA_DIR = PROJECT_ROOT / "data"
 LOGS_DIR = PROJECT_ROOT / "logs"
 
 RAW_DIR = DATA_DIR / "raw"
-CLEANED_DIR = DATA_DIR / "cleaned"
 PROCESSED_DIR = DATA_DIR / "processed"
 MODELS_DIR = DATA_DIR / "models"
 RESULTS_DIR = DATA_DIR / "results"
