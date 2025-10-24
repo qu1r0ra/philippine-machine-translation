@@ -144,7 +144,8 @@ def build_word_classes(
     """
     if "src_tokens" not in df or "tgt_tokens" not in df:
         raise ValueError(
-            "DataFrame must contain 'src_tokens' and 'tgt_tokens' columns. Run preprocess_corpus() first."
+            "DataFrame must contain 'src_tokens' and 'tgt_tokens' columns. "
+            "Run preprocess_corpus() first."
         )
 
     all_sentences = df["src_tokens"].tolist() + df["tgt_tokens"].tolist()
