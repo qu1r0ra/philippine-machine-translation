@@ -135,6 +135,7 @@ def preprocess_corpus(
     df = df[~df[src_col].isin(invalid_values)]
     df = df[~df[tgt_col].isin(invalid_values)]
     df = df.dropna(subset=[src_col, tgt_col])
+    df = df.drop(["usfm", "book", "verse", "chapter"], axis=1)
 
     print(f"[Preprocessing] {len(df):,} valid sentence pairs remaining after cleaning.")
 
@@ -146,7 +147,10 @@ def preprocess_corpus(
 
 
 def build_word_classes(
-    df: pd.DataFrame, output_path: Path, vector_size: int = 100, n_clusters: int = 100
+    df: pd.DataFrame,
+    output_path: Path = PROCESSED_DIR / "word_classes.json",
+    vector_size: int = 100,
+    n_clusters: int = 100,
 ) -> dict[str, str]:
     """
     Builds word embeddings using FastText and clusters them into word classes.
