@@ -23,11 +23,6 @@ PROCESSED_DIR = DATA_DIR / "processed"
 MODELS_DIR = DATA_DIR / "models"
 RESULTS_DIR = DATA_DIR / "results"
 
-# Subdirectories for intermediate artifacts
-ALIGNMENTS_DIR = PROCESSED_DIR / "alignments"
-PHRASE_TABLES_DIR = MODELS_DIR / "phrase_tables"
-EVAL_OUTPUT_DIR = RESULTS_DIR / "translations"
-
 # ============================================================
 # Language configuration
 # ============================================================
@@ -106,9 +101,6 @@ def ensure_dirs():
         PROCESSED_DIR,
         MODELS_DIR,
         RESULTS_DIR,
-        ALIGNMENTS_DIR,
-        PHRASE_TABLES_DIR,
-        EVAL_OUTPUT_DIR,
     ]:
         path.mkdir(parents=True, exist_ok=True)
 

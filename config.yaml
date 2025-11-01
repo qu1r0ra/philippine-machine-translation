@@ -1,0 +1,68 @@
+# ============================================================
+# OpenNMT-py training configuration for a small Transformer
+# REVISED FOR COMPUTE EFFICIENCY (30k sentence pairs)
+# ============================================================
+
+## Data settings
+data:
+  corpus_1:
+    path_src: data/train.src
+    path_tgt: data/train.tgt
+  valid:
+    path_src: data/valid.src
+    path_tgt: data/valid.tgt
+
+## Vocabulary (built automatically before training)
+save_data: data/vocab
+src_vocab_size: 15000         # REDUCED: A smaller corpus needs a smaller vocabulary
+tgt_vocab_size: 15000         # REDUCED
+share_vocab: false
+
+## Model checkpointing
+save_model: outputs/model_transformer
+save_checkpoint_steps: 1000   # REDUCED: Save more often since convergence is faster
+keep_checkpoint: 3
+train_steps: 25000            # REDUCED: Maximum steps limited to prevent unnecessary running
+valid_steps: 500              # INCREASED FREQUENCY: Validate more often to catch early convergence
+report_every: 50              # INCREASED FREQUENCY: Get training feedback more often
+
+## Model architecture
+model_type: text
+encoder_type: transformer
+decoder_type: transformer
+
+# --- Transformer architecture (Same as Small/Base) ---
+word_vec_size: 256
+rnn_size: 256
+transformer_ff: 512
+heads: 4
+enc_layers: 4
+dec_layers: 4
+dropout: 0.1
+position_encoding: true
+
+## Training hyperparameters
+optim: adam
+adam_beta2: 0.998
+learning_rate: 2.0
+warmup_steps: 4000            # REDUCED: Scaled down proportionally to max_steps
+decay_method: noam
+label_smoothing: 0.1
+max_grad_norm: 0.0
+batch_size: 4096              # Best practice for Transformer efficiency
+batch_type: tokens
+normalization: tokens
+accum_count: [2]
+valid_batch_size: 1024
+param_init: 0.0
+param_init_glorot: true
+
+## GPU and seed
+world_size: 1
+gpu_ranks: [0]
+seed: 42
+
+## Logging and output
+log_file: outputs/train_log.txt
+tensorboard: true
+tensorboard_log_dir: outputs/runs
