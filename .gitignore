@@ -1,5 +1,8 @@
+# Miscellaneous
+NOTES.md
+
 # Data
-data/
+data/raw/parallel_corpora_by_verse
 
 # Jupyter junk
 **/*.ipynb_checkpoints
