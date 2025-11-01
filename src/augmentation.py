@@ -2,12 +2,21 @@ import random
 
 import pandas as pd
 
+from config import (
+    AUGMENT_N_COPIES,
+    DROP_PROB,
+    DUP_PROB,
+    SOURCE_COL,
+    SWAP_PROB,
+    TARGET_COL,
+)
+
 
 def inject_noise(
     tokens: list[str],
-    swap_prob: float = 0.05,
-    drop_prob: float = 0.03,
-    dup_prob: float = 0.01,
+    swap_prob: float = SWAP_PROB,
+    drop_prob: float = DROP_PROB,
+    dup_prob: float = DUP_PROB,
 ) -> list[str]:
     """
     Apply simple noise injection to a list of tokens.
@@ -40,9 +49,9 @@ def inject_noise(
 
 def augment_dataset(
     df: pd.DataFrame,
-    src_col: str = "src",
-    tgt_col: str = "tgt",
-    n_copies: int = 1,
+    src_col: str = SOURCE_COL,
+    tgt_col: str = TARGET_COL,
+    n_copies: int = AUGMENT_N_COPIES,
 ) -> pd.DataFrame:
     """
     Apply noise injection to the source sentences of a dataset.
