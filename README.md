@@ -6,7 +6,7 @@
 
 ![Year, Term, Course](https://img.shields.io/badge/AY2526--T1-NLP1000-blue) ![JupyterLab](https://img.shields.io/badge/JupyterLab-orange) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)
 
-An exploration of statistical machine translation for a subset of (mostly) Philippine languages. Created for NLP1000 (Introduction to Natural Language Processing).
+An exploration of neural machine translation for a subset of Philippine languages. Created for NLP1000 (Introduction to Natural Language Processing).
 
 ## Table of Contents <!-- omit from toc -->
 
