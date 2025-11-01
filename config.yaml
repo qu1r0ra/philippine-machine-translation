@@ -14,6 +14,8 @@ data:
 
 ## Vocabulary (built automatically before training)
 save_data: data/vocab
+src_vocab: data/vocab.src
+tgt_vocab: data/vocab.tgt
 src_vocab_size: 15000         # REDUCED: A smaller corpus needs a smaller vocabulary
 tgt_vocab_size: 15000         # REDUCED
 share_vocab: false
