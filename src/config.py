@@ -101,9 +101,6 @@ def ensure_dirs():
         PROCESSED_DIR,
         MODELS_DIR,
         RESULTS_DIR,
-        ALIGNMENTS_DIR,
-        PHRASE_TABLES_DIR,
-        EVAL_OUTPUT_DIR,
     ]:
         path.mkdir(parents=True, exist_ok=True)
 
