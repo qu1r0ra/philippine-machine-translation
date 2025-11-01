@@ -2,12 +2,19 @@ import random
 
 import pandas as pd
 
+from src.config import (
+    AUGMENT_N_COPIES,
+    DROP_PROB,
+    DUP_PROB,
+    SWAP_PROB,
+)
+
 
 def inject_noise(
     tokens: list[str],
-    swap_prob: float = 0.05,
-    drop_prob: float = 0.03,
-    dup_prob: float = 0.01,
+    swap_prob: float = SWAP_PROB,
+    drop_prob: float = DROP_PROB,
+    dup_prob: float = DUP_PROB,
 ) -> list[str]:
     """
     Apply simple noise injection to a list of tokens.
@@ -40,9 +47,9 @@ def inject_noise(
 
 def augment_dataset(
     df: pd.DataFrame,
-    src_col: str = "src",
-    tgt_col: str = "tgt",
-    n_copies: int = 1,
+    src_col: str = "src_tokens",
+    tgt_col: str = "tgt_tokens",
+    n_copies: int = AUGMENT_N_COPIES,
 ) -> pd.DataFrame:
     """
     Apply noise injection to the source sentences of a dataset.
@@ -56,13 +63,26 @@ def augment_dataset(
     Returns:
         A new DataFrame containing both original and augmented sentence pairs.
     """
+    if n_copies <= 0:
+        print(
+            "[INFO] No augmentation requested (n_copies=0). Returning original dataset."
+        )
+        return df
+
+    print(f"[INFO] Augmenting dataset: {len(df):,} rows with {n_copies} copies each...")
     rows: list[tuple[str, str]] = []
+
     for _, row in df.iterrows():
-        src: str = row[src_col]
-        tgt: str = row[tgt_col]
+        src = row[src_col]
+        tgt = row[tgt_col]
         rows.append((src, tgt))
         for _ in range(n_copies):
-            noisy: str = " ".join(inject_noise(src.split()))
+            noisy = " ".join(inject_noise(src.split()))
             rows.append((noisy, tgt))
 
-    return pd.DataFrame(rows, columns=[src_col, tgt_col])
+    out_df = pd.DataFrame(rows, columns=[src_col, tgt_col])
+    print(
+        f"[INFO] Augmentation complete — total rows: "
+        f"{len(out_df):,} ({(len(out_df) / len(df)):.1f}x increase)"
+    )
+    return out_df

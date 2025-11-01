@@ -16,12 +16,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 SRC_DIR = PROJECT_ROOT / "src"
 DATA_DIR = PROJECT_ROOT / "data"
-LOGS_DIR = PROJECT_ROOT / "logs"
 
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
+AUGMENTED_DIR = DATA_DIR / "augmented"
 MODELS_DIR = DATA_DIR / "models"
-RESULTS_DIR = DATA_DIR / "results"
 
 # ============================================================
 # Language configuration
@@ -37,6 +36,7 @@ LANGUAGE_PAIRS = [
     ("tagalog", "kapampangan"),
 ]
 
+# Default pair to train
 SOURCE_LANG = LANGUAGE_PAIRS[0][0]
 TARGET_LANG = LANGUAGE_PAIRS[0][1]
 
@@ -70,24 +70,13 @@ STRIP_EXTRA_SPACES = True
 TRAIN_SPLIT = 0.9
 
 # ============================================================
-# Feature engineering
+# Data augmentation
 # ============================================================
 
-SMOOTHING_ALPHA = 0.1
-
-# ============================================================
-# Modeling
-# ============================================================
-
-MAX_ITERS = 5
-
-# ============================================================
-# Evaluation
-# ============================================================
-
-EVAL_SAMPLE_SIZE = 100
-BLEU_SMOOTHING = True
-SAVE_TRANSLATIONS = True
+AUGMENT_N_COPIES = 1  # how many noisy copies per sentence
+SWAP_PROB = 0.05  # probability of swapping adjacent tokens
+DROP_PROB = 0.03  # probability of dropping a token
+DUP_PROB = 0.01  # probability of duplicating a token
 
 # ============================================================
 # Utility
@@ -97,10 +86,10 @@ SAVE_TRANSLATIONS = True
 def ensure_dirs():
     """Create all necessary directories if they don't exist."""
     for path in [
-        LOGS_DIR,
+        RAW_DIR,
         PROCESSED_DIR,
+        AUGMENTED_DIR,
         MODELS_DIR,
-        RESULTS_DIR,
     ]:
         path.mkdir(parents=True, exist_ok=True)
 

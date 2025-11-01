@@ -3,6 +3,7 @@ NOTES.md
 
 # Data
 data/raw/parallel_corpora_by_verse
+data/processed
 
 # Jupyter junk
 **/*.ipynb_checkpoints
