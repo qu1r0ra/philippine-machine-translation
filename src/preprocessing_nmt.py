@@ -5,15 +5,16 @@ Handles text cleaning, normalization, filtering, and export to .src / .tgt files
 
 import re
 from pathlib import Path
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from src.config import (
+    MAX_SENT_LEN,
+    MIN_SENT_LEN,
     PROCESSED_DIR,
     SOURCE_COL,
     TARGET_COL,
-    MIN_SENT_LEN,
-    MAX_SENT_LEN,
     TRAIN_SPLIT,
 )
 
