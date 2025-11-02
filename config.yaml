@@ -28,7 +28,7 @@ transformer_ff: 512
 heads: 4
 enc_layers: 4
 dec_layers: 4
-dropout: 0.2
+dropout: 0.15
 position_encoding: true
 
 ## 3. Training & Optimization
