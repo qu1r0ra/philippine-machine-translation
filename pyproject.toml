@@ -64,6 +64,7 @@ exclude = [
     "node_modules",
     "site-packages",
     "venv",
+    "notebooks/02b_modeling_nmt.ipynb"
 ]
 line-length = 88
 target-version = "py311"
