@@ -1,0 +1,208 @@
+# ============================================================
+# OpenNMT-py GRU Training Config (Augmented Data, L4 GPU)
+# ============================================================
+
+## 1. Data and Vocabulary
+data:
+  corpus_1:
+    path_src: data/gru-aug/train.src
+    path_tgt: data/gru-aug/train.tgt
+  valid:
+    path_src: data/gru-aug/valid.src
+    path_tgt: data/gru-aug/valid.tgt
+
+save_data: data/gru-aug/vocab
+src_vocab: data/gru-aug/vocab.src
+tgt_vocab: data/gru-aug/vocab.tgt
+src_vocab_size: 15000
+tgt_vocab_size: 15000
+share_vocab: false
+
+## 2. Model Architecture (GRU Encoder–Decoder)
+model_type: text
+encoder_type: rnn
+decoder_type: rnn
+rnn_type: GRU
+word_vec_size: 300
+rnn_size: 512
+layers: 2
+dropout: 0.2
+global_attention: general
+copy_attn: true
+bridge: true
+
+## 3. Training & Optimization
+world_size: 1
+gpu_ranks: [0]
+seed: 42
+dtype: bf16
+
+batch_type: tokens
+batch_size: 4096
+valid_batch_size: 1024
+
+optim: adam
+adam_beta2: 0.998
+learning_rate: 0.001
+decay_method: none
+max_grad_norm: 5.0
+param_init: 0.1
+param_init_glorot: true
+
+train_steps: 30000
+valid_steps: 250
+report_every: 50
+
+## 4. Checkpointing & Logging
+save_model: outputs/gru-aug/model_gru_aug
+save_checkpoint_steps: 500
+keep_checkpoint: 3
+
+log_file: outputs/gru-aug/train_gru_aug_log.txt
+tensorboard: true
+tensorboard_log_dir: outputs/gru-aug/runs
+
+## 5. Early Stopping
+early_stopping: 5
+early_stopping_criteria: ppl
+
+
+# ============================================================
+# OpenNMT-py LSTM Training Config (Augmented Data, L4 GPU)
+# ============================================================
+
+## 1. Data and Vocabulary
+data:
+  corpus_1:
+    path_src: data/lstm-aug/train.src
+    path_tgt: data/lstm-aug/train.tgt
+  valid:
+    path_src: data/lstm-aug/valid.src
+    path_tgt: data/lstm-aug/valid.tgt
+
+save_data: data/lstm-aug/vocab
+src_vocab: data/lstm-aug/vocab.src
+tgt_vocab: data/lstm-aug/vocab.tgt
+src_vocab_size: 15000
+tgt_vocab_size: 15000
+share_vocab: false
+
+## 2. Model Architecture (BiLSTM)
+model_type: text
+encoder_type: brnn
+decoder_type: rnn
+rnn_type: LSTM
+word_vec_size: 512
+rnn_size: 512
+layers: 2
+dropout: 0.2
+global_attention: general
+copy_attn: true
+bridge: true
+
+## 3. Training & Optimization
+world_size: 1
+gpu_ranks: [0]
+seed: 42
+dtype: bf16
+
+batch_type: sents
+batch_size: 128
+valid_batch_size: 128
+
+optim: adam
+learning_rate: 0.001
+max_grad_norm: 5.0
+param_init: 0.1
+param_init_glorot: true
+
+train_steps: 30000
+valid_steps: 250
+report_every: 50
+
+## 4. Checkpointing & Logging
+save_model: outputs/lstm-aug/model_lstm_aug
+save_checkpoint_steps: 500
+keep_checkpoint: 3
+
+log_file: outputs/lstm-aug/train_lstm_aug_log.txt
+tensorboard: true
+tensorboard_log_dir: outputs/lstm-aug/runs
+
+## 5. Early Stopping
+early_stopping: 5
+early_stopping_criteria: ppl
+
+
+# ============================================================
+# OpenNMT-py Transformer Training Config (Augmented Data, L4 GPU)
+# ============================================================
+
+## 1. Data and Vocabulary
+data:
+  corpus_1:
+    path_src: data/transformer-aug/train.src
+    path_tgt: data/transformer-aug/train.tgt
+  valid:
+    path_src: data/transformer-aug/valid.src
+    path_tgt: data/transformer-aug/valid.tgt
+
+save_data: data/transformer-aug/vocab
+src_vocab: data/transformer-aug/vocab.src
+tgt_vocab: data/transformer-aug/vocab.tgt
+src_vocab_size: 15000
+tgt_vocab_size: 15000
+share_vocab: false
+
+## 2. Model Architecture (Transformer-Small)
+model_type: text
+encoder_type: transformer
+decoder_type: transformer
+use_torch_attn: false
+word_vec_size: 500
+rnn_size: 500
+transformer_ff: 512
+heads: 4
+enc_layers: 4
+dec_layers: 4
+dropout: 0.15
+position_encoding: true
+
+## 3. Training & Optimization
+world_size: 1
+gpu_ranks: [0]
+seed: 42
+dtype: bf16
+
+batch_size: 6144
+batch_type: tokens
+normalization: tokens
+accum_count: [1]
+valid_batch_size: 1024
+
+optim: adam
+adam_beta2: 0.998
+learning_rate: 1.5
+decay_method: noam
+warmup_steps: 3000
+label_smoothing: 0.1
+max_grad_norm: 0.0
+param_init: 0.0
+param_init_glorot: true
+
+train_steps: 30000
+valid_steps: 250
+report_every: 50
+
+## 4. Checkpointing & Logging
+save_model: outputs/transformer-aug/model_transformer_aug
+save_checkpoint_steps: 500
+keep_checkpoint: 3
+
+log_file: outputs/transformer-aug/train_transformer_aug_log.txt
+tensorboard: true
+tensorboard_log_dir: outputs/transformer-aug/runs
+
+## 5. Early Stopping
+early_stopping: 5
+early_stopping_criteria: ppl
