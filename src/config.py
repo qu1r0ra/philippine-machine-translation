@@ -79,7 +79,7 @@ SWAP_PROB = 0.05
 DROP_PROB = 0.03
 DUP_PROB = 0.01
 
-MIX_RATIO = 0.1
+MIX_RATIO = 0.2
 
 # ============================================================
 # Utility
