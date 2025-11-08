@@ -55,11 +55,11 @@ valid_steps: 250
 report_every: 50
 
 ## 4. Checkpointing & Logging
-save_model: outputs/gru-aug-cbk/model_gru_aug
+save_model: outputs/gru-aug-cbk/model_gru_aug_cbk
 save_checkpoint_steps: 500
 keep_checkpoint: 3
 
-log_file: outputs/gru-aug-cbk/train_gru_aug_log.txt
+log_file: outputs/gru-aug-cbk/train_gru_aug_cbk_log.txt
 tensorboard: true
 tensorboard_log_dir: outputs/gru-aug-cbk/runs
 

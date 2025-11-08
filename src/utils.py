@@ -78,3 +78,8 @@ def extract_archives(
         print(f"Done extracting '{archive.name}'")
 
     print("All archives processed.")
+
+
+def load_file(path) -> list[str]:
+    with open(path, encoding="utf-8") as f:
+        return [line.strip() for line in f.readlines()]
