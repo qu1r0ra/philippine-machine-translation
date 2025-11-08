@@ -21,6 +21,8 @@ RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 AUGMENTED_DIR = DATA_DIR / "augmented"
 MODELS_DIR = DATA_DIR / "models"
+TRANSLATIONS_DIR = DATA_DIR / "translations"
+RESULTS_DIR = DATA_DIR / "results"
 
 # ============================================================
 # Language configuration
@@ -88,12 +90,7 @@ MIX_RATIO = 0.2
 
 def ensure_dirs():
     """Create all necessary directories if they don't exist."""
-    for path in [
-        RAW_DIR,
-        PROCESSED_DIR,
-        AUGMENTED_DIR,
-        MODELS_DIR,
-    ]:
+    for path in [RAW_DIR, PROCESSED_DIR, AUGMENTED_DIR, MODELS_DIR, TRANSLATIONS_DIR]:
         path.mkdir(parents=True, exist_ok=True)
 
 
