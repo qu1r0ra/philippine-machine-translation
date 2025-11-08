@@ -1,5 +1,6 @@
-import pandas as pd
 import re
+
+import pandas as pd
 
 # Define file names
 ceb_file_name = "translatewiki.ceb-es.ceb"
@@ -39,16 +40,17 @@ good_es_sentences = []
 
 try:
     # Read both files
-    with open(ceb_file_name, "r", encoding="utf-8") as f_ceb:
+    with open(ceb_file_name, encoding="utf-8") as f_ceb:
         ceb_lines = f_ceb.readlines()
 
-    with open(es_file_name, "r", encoding="utf-8") as f_es:
+    with open(es_file_name, encoding="utf-8") as f_es:
         es_lines = f_es.readlines()
 
     # Check if files are aligned
     if len(ceb_lines) != len(es_lines):
         print(
-            f"Error: File line counts do not match. Cebuano: {len(ceb_lines)}, Spanish: {len(es_lines)}"
+            f"Error: File line counts do not match. "
+            f"Cebuano: {len(ceb_lines)}, Spanish: {len(es_lines)}"
         )
     else:
         print(f"Processing {len(ceb_lines)} line pairs with strict filters...")
@@ -80,7 +82,8 @@ try:
                 good_es_sentences.append(es_line)
 
         print(
-            f"Found {len(good_ceb_sentences)} meaningful sentence pairs after strict filtering."
+            f"Found {len(good_ceb_sentences)} meaningful sentence pairs "
+            f"after strict filtering."
         )
 
         # Write to new .ceb and .es files
