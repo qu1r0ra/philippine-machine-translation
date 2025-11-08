@@ -34,6 +34,7 @@ LANGUAGE_PAIRS = [
     ("pangasinense", "ilokano"),
     ("tagalog", "bikolano"),
     ("tagalog", "kapampangan"),
+    ("tagalog", "spanish"),
 ]
 
 # Default pair to train
