@@ -74,10 +74,12 @@ TRAIN_SPLIT = 0.9
 # Data augmentation
 # ============================================================
 
-AUGMENT_N_COPIES = 1  # how many noisy copies per sentence
-SWAP_PROB = 0.05  # probability of swapping adjacent tokens
-DROP_PROB = 0.03  # probability of dropping a token
-DUP_PROB = 0.01  # probability of duplicating a token
+AUGMENT_N_COPIES = 1
+SWAP_PROB = 0.05
+DROP_PROB = 0.03
+DUP_PROB = 0.01
+
+MIX_RATIO = 0.1
 
 # ============================================================
 # Utility
