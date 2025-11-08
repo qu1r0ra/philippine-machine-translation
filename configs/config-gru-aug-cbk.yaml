@@ -1,0 +1,68 @@
+# ============================================================
+# OpenNMT-py GRU Training Config (Augmented with CBK-SPA Data, L4 GPU)
+# ============================================================
+
+## 1. Data and Vocabulary
+data:
+  corpus_1:
+    path_src: data/gru-aug-cbk/train.src
+    path_tgt: data/gru-aug-cbk/train.tgt
+  valid:
+    path_src: data/gru-aug-cbk/valid.src
+    path_tgt: data/gru-aug-cbk/valid.tgt
+
+save_data: data/gru-aug-cbk/vocab
+src_vocab: data/gru-aug-cbk/vocab.src
+tgt_vocab: data/gru-aug-cbk/vocab.tgt
+src_vocab_size: 15000
+tgt_vocab_size: 15000
+share_vocab: false
+
+## 2. Model Architecture (GRU Encoder–Decoder)
+model_type: text
+encoder_type: rnn
+decoder_type: rnn
+rnn_type: GRU
+word_vec_size: 300
+rnn_size: 512
+layers: 2
+dropout: 0.2
+global_attention: general
+copy_attn: true
+bridge: true
+
+## 3. Training & Optimization
+world_size: 1
+gpu_ranks: [0]
+seed: 42
+dtype: bf16
+
+# Token-based batching for efficient GPU utilization
+batch_type: tokens
+batch_size: 4096
+valid_batch_size: 1024
+
+optim: adam
+adam_beta2: 0.998
+learning_rate: 0.001
+decay_method: none
+max_grad_norm: 5.0
+param_init: 0.1
+param_init_glorot: true
+
+train_steps: 30000
+valid_steps: 250
+report_every: 50
+
+## 4. Checkpointing & Logging
+save_model: outputs/gru-aug-cbk/model_gru_aug
+save_checkpoint_steps: 500
+keep_checkpoint: 3
+
+log_file: outputs/gru-aug-cbk/train_gru_aug_log.txt
+tensorboard: true
+tensorboard_log_dir: outputs/gru-aug-cbk/runs
+
+## 5. Early Stopping
+early_stopping: 5
+early_stopping_criteria: ppl
