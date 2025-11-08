@@ -86,3 +86,35 @@ def augment_dataset(
         f"{len(out_df):,} ({(len(out_df) / len(df)):.1f}x increase)"
     )
     return out_df
+
+
+def mix_datasets(
+    base_df: pd.DataFrame,
+    mix_df: pd.DataFrame,
+    mix_ratio: float,
+    src_col: str = "src_tokens",
+    tgt_col: str = "tgt_tokens",
+) -> pd.DataFrame:
+    """
+    Combine the base dataset with a fraction of another dataset
+    (e.g., Chavacano–Spanish) for cross-lingual augmentation.
+
+    Args:
+        base_df: The main dataset (e.g., Cebuano–Spanish).
+        mix_df: The auxiliary dataset to draw from (e.g., Chavacano–Spanish).
+        mix_ratio: Proportion of base size to sample from mix_df (e.g., 0.1 for 10%).
+        src_col: Source column name.
+        tgt_col: Target column name.
+
+    Returns:
+        A new DataFrame containing base data + sampled mix data.
+    """
+    n_mix = int(len(base_df) * mix_ratio)
+    sampled_mix = mix_df.sample(n=min(n_mix, len(mix_df)), random_state=42)
+    combined = pd.concat([base_df, sampled_mix], ignore_index=True)
+    print(
+        f"[INFO] Mixed datasets: base={len(base_df):,}, "
+        f"mix added={len(sampled_mix):,}, "
+        f"total={len(combined):,} ({mix_ratio*100:.0f}% mix ratio)"
+    )
+    return combined[[src_col, tgt_col]]
