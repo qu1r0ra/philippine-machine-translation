@@ -4,14 +4,17 @@
 
 <!-- Refer to https://shields.io/badges for usage -->
 
-![Year, Term, Course](https://img.shields.io/badge/AY2526--T1-NLP1000-blue) ![JupyterLab](https://img.shields.io/badge/JupyterLab-orange) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)
+![Year, Term, Course](https://img.shields.io/badge/AY2526--T1-NLP1000-blue)
+![JupyterLab](https://img.shields.io/badge/JupyterLab-orange) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff) ![PyTorch](https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white)
 
 An exploration of neural machine translation for Cebuano-Spanish translation. Created for NLP1000 (Introduction to Natural Language Processing).
 
 ## Table of Contents <!-- omit from toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Reproducing Results](#2-reproducing-results)
+- [2. Running the Project](#2-running-the-project)
+  - [2.1. Prerequisites](#21-prerequisites)
+  - [2.2. Reproducing the Results](#22-reproducing-the-results)
 - [3. References](#3-references)
 
 ## 1. Introduction
@@ -22,7 +25,50 @@ Several strategies have been explored to improve the performance of MT systems, 
 
 Following the development and training of the model, a series of experiments was conducted to evaluate translation quality. The system's performance was assessed using standard MT evaluation metrics, namely BLEU, CHRF, and TER, to quantify accuracy, fluency, and error rate, respectively. Overall, this study aims to contribute to the ongoing efforts in building robust neural translation systems for low-resource Philippine languages by demonstrating the effectiveness of attention-based architectures and data-driven augmentation strategies in improving translation quality.
 
-## 2. Reproducing Results
+![Translation quality comparisons](data/results/translation_quality_comparisons.png)
+
+Admittedly, our results were not that that great, but that's science.
+
+## 2. Running the Project
+
+### 2.1. Prerequisites
+
+To reproduce our results, you will need the following installed:
+
+1. **Git:** Used to clone this repository.
+
+2. **Python:** We require Python 3.13.x for this project. See <https://www.python.org/downloads/> for the latest Python 3.13 release and install it.
+
+3. **uv:** The dependency manager we used. Install it by following the instructions at <https://docs.astral.sh/uv/getting-started/installation/>.
+
+### 2.2. Reproducing the Results
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/qu1r0ra/philippine-machine-translation
+   ```
+
+2. Navigate to the project root and install all required dependencies:
+
+   ```bash
+   uv sync
+   ```
+
+3. Run through the ff. notebooks in `notebooks/` in the specified order:
+
+   1. `00_setup.ipynb`
+   2. `01_preprocessing_nmt.ipynb`
+   3. `02b_modeling_nmt.ipynb`
+   4. `02b_modeling_nmt.ipynb`
+
+   </br>
+
+   Notes
+
+   - When running a notebook, select `.venv` in root as the kernel.
+   - More instructions can be found within each notebook.
+   - You do not need to run the notebooks that are not listed above as they are experimental.
 
 ## 3. References
 
