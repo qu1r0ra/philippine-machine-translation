@@ -55,12 +55,12 @@ To reproduce our results, you will need the following installed:
    uv sync
    ```
 
-3. Run through the ff. notebooks in `notebooks/` in the order specified below:
+3. Run through the ff. notebooks in `notebooks/` in the order listed below:
 
    1. `00_setup.ipynb`
-   2. `01_preprocessing_nmt.ipynb`
-   3. `02b_modeling_nmt.ipynb`
-   4. `02b_modeling_nmt.ipynb`
+   2. `01b_preprocessing_nmt.ipynb`
+   3. `02c_modeling_cbk.ipynb`
+   4. `03_evaluation.ipynb`
 
    </br>
 
