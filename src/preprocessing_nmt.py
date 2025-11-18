@@ -107,14 +107,16 @@ def export_opennmt_files(
 # ============================================================
 
 
-def split_and_export(df: pd.DataFrame, train_split: float = TRAIN_SPLIT) -> None:
+def split_and_export(
+    df: pd.DataFrame, train_split: float = TRAIN_SPLIT, output_dir: Path = PROCESSED_DIR
+) -> None:
     """Split dataset into train/valid and export both splits."""
     print(f"[Splitting] Train ratio = {train_split}")
     train_df, valid_df = train_test_split(
         df, train_size=train_split, random_state=26, shuffle=True
     )
 
-    export_opennmt_files(train_df, "train")
-    export_opennmt_files(valid_df, "valid")
+    export_opennmt_files(train_df, "train", output_dir)
+    export_opennmt_files(valid_df, "valid", output_dir)
 
     print("[Done] Train/valid splits exported successfully.")
