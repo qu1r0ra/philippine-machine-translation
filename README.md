@@ -68,7 +68,7 @@ To reproduce our results, you will need the following installed:
 
    - When running a notebook, select `.venv` in root as the kernel.
    - More instructions can be found in each notebook.
-   - You do not need to run the notebooks that are not listed above as they are experimental.
+   - You do not need to run the notebooks that are not listed above as they are either experimental or deprecated.
 
 ## 3. References
 
