@@ -59,7 +59,7 @@ To reproduce our results, you will need the following installed:
 
    1. `00_setup.ipynb`
    2. `01b_preprocessing_nmt.ipynb`
-   3. `02c_modeling_cbk.ipynb`
+   3. `02c_modeling_pytorch.ipynb`
    4. `03_evaluation.ipynb`
 
    </br>
