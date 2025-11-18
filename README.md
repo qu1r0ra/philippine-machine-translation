@@ -5,7 +5,7 @@
 <!-- Refer to https://shields.io/badges for usage -->
 
 ![Year, Term, Course](https://img.shields.io/badge/AY2526--T1-NLP1000-blue)
-![JupyterLab](https://img.shields.io/badge/JupyterLab-orange) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff) ![PyTorch](https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-ffffff?logo=Jupyter) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff) ![PyTorch](https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white)
 
 An exploration of neural machine translation for Cebuano-Spanish translation. Created for NLP1000 (Introduction to Natural Language Processing).
 
