@@ -55,7 +55,7 @@ To reproduce our results, you will need the following installed:
    uv sync
    ```
 
-3. Run through the ff. notebooks in `notebooks/` in the specified order:
+3. Run through the ff. notebooks in `notebooks/` in the order specified below:
 
    1. `00_setup.ipynb`
    2. `01_preprocessing_nmt.ipynb`
@@ -67,7 +67,7 @@ To reproduce our results, you will need the following installed:
    Notes
 
    - When running a notebook, select `.venv` in root as the kernel.
-   - More instructions can be found within each notebook.
+   - More instructions can be found in each notebook.
    - You do not need to run the notebooks that are not listed above as they are experimental.
 
 ## 3. References
