@@ -62,8 +62,6 @@ To reproduce our results, you will need the following installed:
    3. `02c_modeling_pytorch.ipynb`
    4. `03_evaluation.ipynb`
 
-   </br>
-
    Notes
 
    - When running a notebook, select `.venv` in root as the kernel.
@@ -73,4 +71,5 @@ To reproduce our results, you will need the following installed:
 ## 3. References
 
 [1] _Machine Translation_ (2025). <https://www.sciencedirect.com/topics/computer-science/machine-translation>.
+
 [2] Tafa, Taofik O. et al. (2025). “Machine Translation Performance for Low-Resource Languages: A Systematic Literature Review”. In: _IEEE Access_ 13, pp. 72486–72505. DOI: [10.1109/ACCESS.2025.3562918](https://doi.org/10.1109/ACCESS.2025.3562918).
